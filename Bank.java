@@ -231,6 +231,22 @@ public class Bank {
         }
         return null;
     }
+    public void changePIN() {
+    Scanner input = new Scanner(System.in);
+    System.out.print("Enter your current 4-digit PIN: ");
+    int currentPIN = input.nextInt();
+    
+    Account account = findAccount(currentPIN);
+    if (account != null) {
+        System.out.print("Enter your new 4-digit PIN: ");
+        int newPIN = input.nextInt();
+        account.setPIN(newPIN);
+        System.out.println("PIN changed successfully!");
+    } else {
+        System.out.println("Account not found!");
+    }
+}
+
 
     public static void main(String[] args) {
         Bank bank = new Bank();
@@ -248,6 +264,7 @@ public class Bank {
             System.out.println("7. Print all accounts");
             System.out.println("8. Save accounts");
             System.out.println("9. Load accounts");
+            System.out.println("10. Change PIN"); // New option for changing PIN
             System.out.println("0. Exit");
 
             System.out.print("Enter your choice: ");
@@ -280,6 +297,9 @@ public class Bank {
                     break;
                 case 9:
                     bank.load();
+                    break;
+                case 10:
+                    bank.changepin();
                     break;
                 case 0:
                     System.out.println("Exiting...");
